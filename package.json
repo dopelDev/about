@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "bulma": "^0.9.4",
+    "sass": "^1.69.5",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "package.json": "^0.0.0",
+    "vue": "^3.3.13",
+    "vue-loader": "^17.3.1"
+  },
+  "scripts": {
+    "build-sass": "sass ./about/static/sass/main.sass ./about/static/css/main.css",
+    "build-vue": "webpack --mode production",
+    "build:all": "npm run build-sass && npm run build-vue"
+  }
+}
