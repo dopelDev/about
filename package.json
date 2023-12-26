@@ -10,8 +10,8 @@
     "vue-loader": "^17.3.1"
   },
   "scripts": {
-    "build-sass": "sass ./about/static/sass/main.sass ./about/static/css/main.css",
-    "build-vue": "webpack --mode production",
+    "build-sass": "sass --watch ./about/static/sass/main.sass ./about/static/css/main.css",
+    "build-vue": "webpack --watch --mode production",
     "build:all": "npm run build-sass && npm run build-vue"
   }
 }
