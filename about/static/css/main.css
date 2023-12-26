@@ -1,4 +1,54 @@
 @charset "UTF-8";
+.color1 {
+  background-color: #224b69;
+}
+
+.color2 {
+  background-color: #365f7a;
+}
+
+.color3 {
+  background-color: #3c4550;
+}
+
+.color4 {
+  background-color: #cacabc;
+}
+
+.color5 {
+  background-color: #285270;
+}
+
+.text-color1 {
+  color: #224b69;
+}
+
+.text-color2 {
+  color: #365f7a;
+}
+
+.text-color3 {
+  color: #3c4550;
+}
+
+.text-color4 {
+  color: #cacabc;
+}
+
+.text-color5 {
+  color: #285270;
+}
+
+@font-face {
+  font-family: "MainFont";
+  src: url("../fonts/MartianMonoNerdFont-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+.font-main {
+  font-family: "MainFont", monospace;
+}
+
 /*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .pagination-previous,
@@ -2612,7 +2662,7 @@ a.tag:hover {
 }
 
 .title {
-  color: hsl(0, 0%, 21%);
+  color: #285270;
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.125;
@@ -2647,7 +2697,7 @@ a.tag:hover {
 }
 
 .subtitle {
-  color: hsl(0, 0%, 29%);
+  color: #3c4550;
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.25;

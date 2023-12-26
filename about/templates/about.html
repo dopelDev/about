@@ -5,28 +5,10 @@
 		<title>about</title>
 		{% include 'includes/header.html' %}
 	</head>
-	<body class="body">
-		<div class="container">
-			<h1 class="title">
-				<a class="has-text-dark" href="{{ url_for('about') }}">About</a>
-			</h1>
-			<div class="notification is-dark">
-				{% include 'includes/summary.html' %}
-			</div>
-		</div>
+	<body class="color1">
+		{% include 'includes/summary.html' %}
 	</body>
 	<footer>
 		{% include 'includes/footer.html' %}
 	</footer>
 </html>
-<style>
-.body {
-	background-color: #000000;
-}
-.footer {
-	background-color: #000000;
-}
-a {
-	text-decoration: none !important;
-}
-</style>
