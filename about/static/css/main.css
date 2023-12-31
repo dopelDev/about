@@ -39,6 +39,54 @@
   color: #285270;
 }
 
+.color1 {
+  background-color: #224b69;
+}
+
+.color2 {
+  background-color: #365f7a;
+}
+
+.color3 {
+  background-color: #3c4550;
+}
+
+.color4 {
+  background-color: #cacabc;
+}
+
+.color5 {
+  background-color: #285270;
+}
+
+.text-color1 {
+  color: #224b69;
+}
+
+.text-color2 {
+  color: #365f7a;
+}
+
+.text-color3 {
+  color: #3c4550;
+}
+
+.text-color4 {
+  color: #cacabc;
+}
+
+.text-color5 {
+  color: #285270;
+}
+
+.custom-button {
+  background-color: #365f7a;
+  transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+.custom-button:hover {
+  background-color: #cacabc;
+}
+
 @font-face {
   font-family: "MainFont";
   src: url("../fonts/MartianMonoNerdFont-Regular.woff2") format("woff2");

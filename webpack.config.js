@@ -2,10 +2,10 @@ const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 
 module.exports = {
-  entry: './about/static/js/app', // Punto de entrada de tu aplicación
+  entry: './about/static/js/app.js', // Punto de entrada de tu aplicación
   output: {
-    path: path.resolve(__dirname, './about/static/js/'), // Directorio de salida
-    filename: 'bundle.js' // Nombre del archivo empaquetado
+    path: path.resolve(__dirname, './about/static/'), // Directorio de salida
+    filename: './js/app.bundle.js' // Nombre del archivo empaquetado
   },
   module: {
     rules: [
@@ -19,6 +19,10 @@ module.exports = {
   plugins: [
     // Asegúrate de incluir el plugin de Vue Loader
     new VueLoaderPlugin()
-  ]
+  ],
+	resolve: {
+		extensions: ['.js', '.vue', '.json'],
+		alias: {
+			'vue$': './node_modules/vue/dist/vue.esm.js',
 };
 

@@ -3,7 +3,7 @@
 		<div class="columns color4">
 			<div class="column is-2">
 				<figure class="image is-128x128">
-					<img class="is-rounded" src="{{ url_for('static', filename='img/pic128.webp') }}" alt="Profile picture of Pedro 'dopeldev' Gonzales">
+					<img class="is-rounded" src="" alt="Profile picture of Pedro 'dopeldev' Gonzales">
 				</figure>
 			</div>
 			<div class="column auto">
