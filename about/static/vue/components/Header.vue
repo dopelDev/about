@@ -2,12 +2,14 @@
 	<section class="container">
 		<div class="columns color4">
 			<div class="column is-2">
-				<figure class="image is-128x128">
-					<img class="is-rounded" src="" alt="Profile picture of Pedro 'dopeldev' Gonzales">
+				<figure class="image">
+					<div class="image-profile">
+						<span class="image-profile-text-backup">Profile picture of Pedro 'dopeldev' Gonzales</span>
+					</div>
 				</figure>
 			</div>
 			<div class="column auto">
-				<h1 class="title is-2">Pedro GG "Dopeldev" Gonzales</h1>
+				<h1 class="title is-2">Pedro "Dopeldev" Gonzales</h1>
 				<p class="subtitle is-4">Software Developer</p>
 			</div>
 		</div>

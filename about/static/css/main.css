@@ -87,6 +87,19 @@
   background-color: #cacabc;
 }
 
+@media (min-width: 768px) {
+  .image-profile {
+    background-image: url("../img/photo-perfil.webp");
+    background-size: cover;
+    height: 160px;
+    width: 100%;
+  }
+}
+
+.image-profile-text-backup {
+  display: none;
+}
+
 @font-face {
   font-family: "MainFont";
   src: url("../fonts/MartianMonoNerdFont-Regular.woff2") format("woff2");
@@ -2710,7 +2723,7 @@ a.tag:hover {
 }
 
 .title {
-  color: #3c4550;
+  color: hsl(0, 0%, 21%);
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.125;
