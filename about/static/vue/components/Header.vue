@@ -1,16 +1,20 @@
 <template>
 	<section class="container">
 		<div class="columns color4">
-			<div class="column is-2">
-				<figure class="image">
-					<div class="image-profile">
-						<span class="image-profile-text-backup">Profile picture of Pedro 'dopeldev' Gonzales</span>
-					</div>
-				</figure>
+			<div class="column is-2 is-desktop">
+				<div class="block">
+					<figure class="image">
+						<div class="image-profile">
+							<span class="image-profile-text-backup">Profile picture of Pedro 'dopeldev' Gonzales</span>
+						</div>
+					</figure>
+				</div>
 			</div>
 			<div class="column auto">
+				<div class="block">
 				<h1 class="title is-2"><span :class="{'faded': isFaded }">{{ names[currentIndex] }}</span> Gonzales</h1>
 				<p class="subtitle is-4">Software Developer</p>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -22,7 +26,7 @@
 		data() {
 			return {
 				title: 'Header',
-				names: ['"Dopeldev"', 'Alejandro', 'Pedro'],
+				names: ['"Dopeldev"', 'Pedro'],
 				currentIndex: 0,
 				isFaded: false
 			}
