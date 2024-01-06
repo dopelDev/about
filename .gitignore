@@ -2,3 +2,4 @@ env/*
 node_modules/*
 about/__pycache__/*
 about/module/__pycache__/*
+about/module/config.py
