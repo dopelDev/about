@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, request
+from flask import Flask, render_template, send_from_directory, jsonify
 from module.forms import ContactForm
 
 app = Flask(__name__)
@@ -15,8 +15,12 @@ def about():
 
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
-
-    return "Aun no se"
+    form = ContactForm()
+    if form.validate_on_submit():
+        print(form.first_name.data)
+        return  jsonify(form.data)
+    else:
+        return "No se ha enviado el formulario"
 
 if __name__ == '__main__':
     app.run(debug=True, port=8989, host='0.0.0.0')
