@@ -27,11 +27,11 @@ def submit_contact_form():
         if form.subject.data == None:
             form.subject.data = 'Consulta'
         msg = Message(form.subject.data, sender='322kuroneko2@gmail.com', recipients=['322kuroneko@gmail.com'])
-        msg.body = message + '\n' + "from: " + form.email.data + '\n' + "Nombre: " + form.first_name.data + '\n' + "Apellido: " + form.last_name.data + '\n' + "Country: " + form.country.data
+        msg.body = message + '\n' + "from: " + form.email.data + '\n' + "First Name: " + form.first_name.data + '\n' + "Last Name: " + form.last_name.data + '\n' + "Country: " + form.country.data
         mail.send(msg)
-        return  jsonify(form.data)
+        return jsonify({'success' : True})
     else:
-        return "No se ha enviado el formulario"
+        return jsonify({'success' : False})
 
 if __name__ == '__main__':
     app.run(debug=True, port=8989, host='0.0.0.0')

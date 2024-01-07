@@ -1,8 +1,7 @@
 <template>
 	<div>
-		<div class="title">WORK</div>
-		<div v-if="showAlert" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
-			{{ message }}
+		<div v-if="showAlert" class="title alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+			<p class="has-text-centered color4">{{ message }}</p>
 		</div>
 	</div>
 </template>
@@ -34,13 +33,13 @@
 					.then(response => response.json())
 					.then(data => {
 						if (data.success) {
-							this.triggerAlert(true, 'Formulario enviado con éxito!');
+							this.triggerAlert(true, 'Send message success!');
 						} else {
-							this.triggerAlert(false, 'Error al enviar el formulario.');
+							this.triggerAlert(false, 'Error : message fail!');
 						}
 					})
 					.catch(() => {
-						this.triggerAlert(false, 'Error al enviar el formulario.');
+						this.triggerAlert(false, 'Error : message fail!');
 					});
 			},
 			triggerAlert(success, message) {
