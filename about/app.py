@@ -1,6 +1,5 @@
 from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
-from flask_wtf import FlaskForm
 from module.forms import ContactForm
 from module.config import ProductionConfig
 
@@ -13,23 +12,15 @@ mail = Mail(app)
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory('static/img', 'favicon.ico')
-@app.route('/app.bundle.js')
-def app_bundle():
-    return send_from_directory('static/js', 'app.bundle.js')
-@app.route('/custom.js')
-def custom_js():
-    return send_from_directory('static/js', 'custom.js')
 
 @app.route('/')
 def about():
     form = ContactForm()
-    form = FlaskForm(meta={'csrf': False})
     return render_template('about.html', form=form)
 
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
     form = ContactForm()
-    form = FlaskForm(meta={'csrf': False})
     if form.validate_on_submit():
         print(form.first_name.data)
         message = form.message.data
@@ -43,4 +34,4 @@ def submit_contact_form():
         return jsonify({'success' : False})
 
 if __name__ == '__main__':
-    app.run(port=8181, host='localhost')
+    app.run(port=8181, host='0.0.0.0')
