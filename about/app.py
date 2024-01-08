@@ -1,5 +1,6 @@
 from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
+from flask_wtf import FlaskForm
 from module.forms import ContactForm
 from module.config import ProductionConfig
 
@@ -22,12 +23,13 @@ def custom_js():
 @app.route('/')
 def about():
     form = ContactForm()
+    form = FlaskForm(meta={'csrf': False})
     return render_template('about.html', form=form)
 
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
     form = ContactForm()
-
+    form = FlaskForm(meta={'csrf': False})
     if form.validate_on_submit():
         print(form.first_name.data)
         message = form.message.data
