@@ -1,6 +1,6 @@
 from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect, generate_csrf
 from module.forms import ContactForm
 from module.config import ProductionConfig
 
@@ -31,9 +31,9 @@ def submit_contact_form():
         msg = Message(form.subject.data, sender='322kuroneko2@gmail.com', recipients=['322kuroneko@gmail.com'])
         msg.body = message + '\n' + "from: " + form.email.data + '\n' + "First Name: " + form.first_name.data + '\n' + "Last Name: " + form.last_name.data + '\n' + "Country: " + form.country.data
         mail.send(msg)
-        return jsonify({'success' : True})
+        return jsonify({'success' : True, 'csrf_token' : generate_csrf()})
     else:
-        return jsonify({'success' : False})
+        return jsonify({'success' : False, 'csrf_token' : generate_csrf()})
 
 if __name__ == '__main__':
     app.run(port=8181, host='0.0.0.0')

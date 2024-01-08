@@ -12,11 +12,16 @@
 			return {
 				showAlert: false,
 				isSuccess: false,
-				message: ''
+				message: '',
+				csrfToken: '',
 			};
 		},
 		mounted() {
-			const form = document.querySelector('form');
+			const csrfToken = document.querySelector('meta[name="csrf-token"]');
+			if (csrfToken) {
+				this.csrfToken = csrfToken.content;
+			}
+			const form = document.getElementById('form');
 			if (form) {
 				form.addEventListener('submit', this.handleSubmit);
 			}
@@ -24,9 +29,9 @@
 		methods: {
 			handleSubmit(e) {
 				e.preventDefault();
-				const csrfToken = document.querySelector('meta[name="csrf-token"]');
+
 				const formData = new FormData(e.target);
-				formData.append('csrf_token', csrfToken);
+				formData.append('csrf_token', this.csrfToken);
 
 				fetch(e.target.action, {
 					method: 'POST',
@@ -38,6 +43,9 @@
 							this.triggerAlert(true, 'Send message success!');
 						} else {
 							this.triggerAlert(false, 'Error : message fail!');
+						}
+						if (data.csrf_token) {
+							this.csrfToken = data.csrf_token;
 						}
 					})
 					.catch(() => {
@@ -52,7 +60,7 @@
 			}
 		},
 		beforeUnmount() {
-			const form = document.getElementById('form');
+			const form = document.querySelector('form');
 			if (form) {
 				form.removeEventListener('submit', this.handleSubmit);
 			}
