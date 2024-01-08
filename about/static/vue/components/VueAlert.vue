@@ -24,7 +24,9 @@
 		methods: {
 			handleSubmit(e) {
 				e.preventDefault();
+				const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 				const formData = new FormData(e.target);
+				formData.append('csrf_token', csrf-token);
 
 				fetch(e.target.action, {
 					method: 'POST',
