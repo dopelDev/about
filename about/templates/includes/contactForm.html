@@ -1,5 +1,6 @@
 <form id="form" @submit="handleSubmit" method="POST" action="{{ url_for('submit_contact_form') }}">
 	{{ form.hidden_tag() }}
+	{{ form.csrf_token()  }}
 	<div class="block">
 		<section class="hero">
 			<div class="hero-body color4">
@@ -42,5 +43,5 @@
 			<button class="button is-large is-fullwidth is-rounded is-info" type="submit">Submit</button>
 		</div>
 	</div>
+	<div id="vue-alert"></div>
 </form>
-<div id="vue-alert"></div>

@@ -24,7 +24,6 @@ def about():
 def submit_contact_form():
     form = ContactForm()
     if form.validate_on_submit():
-        print(form.first_name.data)
         message = form.message.data
         if form.subject.data == None:
             form.subject.data = 'Consulta'
