@@ -2,18 +2,24 @@ from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
 from flask_wtf import CSRFProtect
 from module.forms import ContactForm
-from module.config import DevelopmentConfig
+from module.config import ProductionConfig
 
 app = Flask(__name__)
 # Configuración de la aplicación
 CSRFProtect(app)
-app.config.from_object(DevelopmentConfig)
+app.config.from_object(ProductionConfig)
 # Configuración de la extensión Mail
 mail = Mail(app)
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory('static/img', 'favicon.ico')
+@app.route('/app.bundle.js')
+def app_bundle():
+    return send_from_directory('static/js', 'app.bundle.js')
+@app.route('/custom.js')
+def custom_js():
+    return send_from_directory('static/js', 'custom.js')
 
 @app.route('/')
 def about():
