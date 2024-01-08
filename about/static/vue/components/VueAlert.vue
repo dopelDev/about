@@ -20,6 +20,7 @@
 			const csrfToken = document.querySelector('meta[name="csrf-token"]');
 			if (csrfToken) {
 				this.csrfToken = csrfToken.content;
+				console.log(csrfToken)
 			}
 			const form = document.getElementById('form');
 			if (form) {
