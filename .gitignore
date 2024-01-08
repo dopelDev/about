@@ -3,3 +3,4 @@ node_modules/*
 about/__pycache__/*
 about/module/__pycache__/*
 about/module/config.py
+about/module/__pycache__/__init__.cpython-311.pyc
