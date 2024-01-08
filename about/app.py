@@ -23,6 +23,7 @@ def about():
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
     form = ContactForm()
+    print(form.validate_on_submit())
     if form.validate_on_submit():
         message = form.message.data
         if form.subject.data == None:

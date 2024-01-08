@@ -16,7 +16,7 @@
 			};
 		},
 		mounted() {
-			const form = document.getElementById('form');
+			const form = document.querySelector('form');
 			if (form) {
 				form.addEventListener('submit', this.handleSubmit);
 			}
@@ -24,7 +24,7 @@
 		methods: {
 			handleSubmit(e) {
 				e.preventDefault();
-				const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+				const csrfToken = document.querySelector('meta[name="csrf-token"]');
 				const formData = new FormData(e.target);
 				formData.append('csrf_token', csrfToken);
 
