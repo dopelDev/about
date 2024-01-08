@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div v-if="showAlert" class="title alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
-			<p class="has-text-centered color4">{{ message }}</p>
+			<p class="has-text-centered">{{ message }}</p>
 		</div>
 	</div>
 </template>
@@ -58,3 +58,23 @@
 	};
 </script>
 
+<style scoped>
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+</style>
