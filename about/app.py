@@ -3,6 +3,7 @@ from flask_mail import Mail, Message
 from flask_wtf import CSRFProtect
 from module.forms import ContactForm
 from module.config import ProductionConfig
+from flask_talisman import Talisman
 
 app = Flask(__name__)
 # Configuración de la aplicación
@@ -10,6 +11,34 @@ CSRFProtect(app)
 app.config.from_object(ProductionConfig)
 # Configuración de la extensión Mail
 mail = Mail(app)
+
+# Configuración de la extensión Talisman
+csp = {
+        'default-src': [
+            '\'self\'',
+            'https://www.google-analytics.com',
+            'https://about.dopeldev.com',
+        ],
+        'img-src': [
+            '\'self\'',
+            'https://about.dopeldev.com',
+        ],
+        'style-src': [
+            '\'self\'',
+            'https://about.dopeldev.com',
+            '\'unsafe-inline\'',
+            'https://about.dopeldev.com',
+        ],
+        'font-src': [
+            '\'self\'',
+            'https://about.dopeldev.com',
+        ],
+        'script-src': [
+            '\'self\'',
+            'https://about.dopeldev.com',
+        ]
+    }
+Talisman(app, content_security_policy=csp)
 
 @app.route('/favicon.ico')
 def favicon():
