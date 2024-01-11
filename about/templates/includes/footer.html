@@ -10,4 +10,11 @@
 </div>
 <!-- scripts -->
 <script src="{{ url_for('static', filename='js/app.bundle.js') }}"></script>
-<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<script>
+
+document.getElementById('scroll-to-form').addEventListener('click', scroll_to_form);
+function scroll_to_form() {
+	const div = document.getElementById('form');
+	div.scrollIntoView({behavior: 'smooth'});
+}
+</script>

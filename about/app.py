@@ -34,7 +34,6 @@ csp = {
             'https://about.dopeldev.com',
         ],
         'script-src': [
-            '\'self\'',
             'https://about.dopeldev.com',
         ]
     }
