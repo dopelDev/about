@@ -2,7 +2,7 @@ from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
 from flask_wtf import CSRFProtect
 from module.forms import ContactForm
-from module.config import DevelopmentConfig, DevelopmentConfig
+from module.config import DevelopmentConfig
 from flask_talisman import Talisman
 
 app = Flask(__name__)
