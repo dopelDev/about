@@ -37,7 +37,7 @@ csp = {
             'https://about.dopeldev.com',
         ]
     }
-Talisman(app, content_security_policy=csp)
+#Talisman(app, content_security_policy=csp)
 
 @app.route('/favicon.ico')
 def favicon():
