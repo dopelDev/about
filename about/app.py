@@ -1,7 +1,6 @@
 import os
 import sys
 
-from module.config import ProductionConfig
 currentdir = os.path.dirname(os.path.realpath(__file__))
 module_path = os.path.join(currentdir, 'module')
 sys.path.append(module_path)
@@ -9,7 +8,7 @@ sys.path.append(module_path)
 from flask import Flask, render_template, send_from_directory, jsonify, request
 from flask_mail import Mail, Message
 from forms import ContactForm
-from config import DevelopmentConfig
+from config import ProductionConfig 
 from generator import TemporalUUIDGenerator
 from flask_talisman import Talisman
 
