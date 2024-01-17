@@ -49,6 +49,8 @@ def about():
 def submit_contact_form():
     form = ContactForm()
     uuid = request.headers.get('X-UUID')
+    print(uuid)
+    print(uuid_generator.get_uuids())
     if uuid in uuid_generator.get_uuids():
         message = form.message.data
         if form.subject.data == None:
