@@ -4,7 +4,7 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 module_path = os.path.join(currentdir, 'module')
 sys.path.append(module_path)
 
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, render_template, send_from_directory, jsonify, request
 from flask_mail import Mail, Message
 from forms import ContactForm
 from config import DevelopmentConfig
@@ -40,8 +40,8 @@ def about():
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
     form = ContactForm()
-    if form.validate_on_submit():
-        print(form.first_name.data)
+    uuid = request.headers.get('X-UUID')
+    if uuid in uuid_generator.get_uuids():
         message = form.message.data
         if form.subject.data == None:
             form.subject.data = 'Consulta'

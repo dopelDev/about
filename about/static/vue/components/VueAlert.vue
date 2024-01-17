@@ -12,7 +12,8 @@
 			return {
 				showAlert: false,
 				isSuccess: false,
-				message: ''
+				message: '',
+				uuid: ''
 			};
 		},
 		mounted() {
@@ -22,13 +23,21 @@
 			}
 		},
 		methods: {
+				getMetaTagUUID() {
+				const metaTag = document.querySelector('meta[name="uuid"]');
+				return metaTag ? metaTag.content : '';
+			},
 			handleSubmit(e) {
 				e.preventDefault();
 				const formData = new FormData(e.target);
+				const uuid = this.getMetaTagUUID();
 
 				fetch(e.target.action, {
 					method: 'POST',
 					body: formData,
+					headers: {
+						'X-UUID': uuid
+					}
 				})
 					.then(response => response.json())
 					.then(data => {
@@ -47,8 +56,8 @@
 				this.isSuccess = success;
 				this.message = message;
 				setTimeout(() => this.showAlert = false, 3000);
-			}
-		},
+			},
+					},
 		beforeUnmount() {
 			const form = document.getElementById('form');
 			if (form) {
@@ -60,21 +69,21 @@
 
 <style scoped>
 .alert {
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px 0;
+	padding: 10px;
+	border-radius: 5px;
+	margin: 10px 0;
 }
 
 .alert-success {
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+	color: #155724;
 }
 
 .alert-danger {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	color: #721c24;
 }
 
 </style>
