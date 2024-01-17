@@ -1,12 +1,11 @@
 import uuid
-import time
 from datetime import datetime, timedelta
 
-class TemporalUUIDGenerator(object):
-    def __init__(self, node_id):
+class TemporalUUIDGenerator():
+    def __init__(self):
         self.uuids = {}
 
-    def generator_uuid(self, lifespan_minutes):
+    def generate_uuid(self, lifespan_minutes):
         new_uuid = str(uuid.uuid4())
         expiration_time = datetime.now() + timedelta(minutes=lifespan_minutes)
         self.uuids[new_uuid] = expiration_time

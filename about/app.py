@@ -1,14 +1,22 @@
+import os
+import sys
+currentdir = os.path.dirname(os.path.realpath(__file__))
+module_path = os.path.join(currentdir, 'module')
+sys.path.append(module_path)
+
 from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
-from module.forms import ContactForm
-from module.config import DevelopmentConfig
-from module.generator_uuid import TemporalUUIDGenerator
+from forms import ContactForm
+from config import DevelopmentConfig
+from generator import TemporalUUIDGenerator
 
 app = Flask(__name__)
 # Configuración de la aplicación
 app.config.from_object(DevelopmentConfig)
 # Configuración de la extensión Mail
 mail = Mail(app)
+# uuid generator
+uuid_generator = TemporalUUIDGenerator()
 
 @app.route('/favicon.ico')
 def favicon():
@@ -16,8 +24,18 @@ def favicon():
 
 @app.route('/')
 def about():
+    try:
+        uuid_generator.cleanup_uuids()
+    except:
+        print("Error al limpiar uuids")
+    finally:
+        uuid = uuid_generator.generate_uuid(lifespan_minutes=5)
+        uuid = uuid_generator.get_uuids()
+    print(uuid.keys())
+    costumer_uuids = list(uuid.keys())
+    print(costumer_uuids[-1])
     form = ContactForm()
-    return render_template('about.html', form=form)
+    return render_template('about.html', form=form, uuid=costumer_uuids[-1])
 
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
