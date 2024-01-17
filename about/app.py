@@ -1,5 +1,7 @@
 import os
 import sys
+
+from module.config import ProductionConfig
 currentdir = os.path.dirname(os.path.realpath(__file__))
 module_path = os.path.join(currentdir, 'module')
 sys.path.append(module_path)
@@ -12,7 +14,7 @@ from generator import TemporalUUIDGenerator
 
 app = Flask(__name__)
 # Configuración de la aplicación
-app.config.from_object(DevelopmentConfig)
+app.config.from_object(ProductionConfig)
 # Configuración de la extensión Mail
 mail = Mail(app)
 # uuid generator
@@ -53,4 +55,4 @@ def submit_contact_form():
         return jsonify({'success' : False})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8989, host='0.0.0.0')
+    app.run(port=8989, host='0.0.0.0')
