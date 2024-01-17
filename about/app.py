@@ -19,31 +19,6 @@ app.config.from_object(ProductionConfig)
 mail = Mail(app)
 # uuid generator
 uuid_generator = TemporalUUIDGenerator()
-csp = {
-        'default-src': [
-            '\'self\'',
-            'https://www.google-analytics.com',
-            'https://about.dopeldev.com',
-        ],
-        'img-src': [
-            '\'self\'',
-            'https://about.dopeldev.com',
-        ],
-        'style-src': [
-            '\'self\'',
-            'https://about.dopeldev.com',
-            '\'unsafe-inline\'',
-            'https://about.dopeldev.com',
-        ],
-        'font-src': [
-            '\'self\'',
-            'https://about.dopeldev.com',
-        ],
-        'script-src': [
-            'https://about.dopeldev.com',
-        ]
-    }
-Talisman(app, content_security_policy=csp)
 
 @app.route('/favicon.ico')
 def favicon():
