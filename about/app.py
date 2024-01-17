@@ -24,6 +24,13 @@ uuid_generator = TemporalUUIDGenerator()
 def favicon():
     return send_from_directory('static/img', 'favicon.ico')
 
+@app.route('/app.bundle.js')
+def app_bundle():
+    return send_from_directory('static/js', 'app.bundle.js')
+@app.route('/custom.js')
+def custom_js():
+    return send_from_directory('static/js', 'custom.js')
+
 @app.route('/')
 def about():
     try:
