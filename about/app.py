@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_from_directory, jsonify
 from flask_mail import Mail, Message
 from module.forms import ContactForm
 from module.config import DevelopmentConfig
+from module.generator_uuid import TemporalUUIDGenerator
 
 app = Flask(__name__)
 # Configuración de la aplicación
