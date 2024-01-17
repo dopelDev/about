@@ -10,7 +10,6 @@ from flask_mail import Mail, Message
 from forms import ContactForm
 from config import ProductionConfig 
 from generator import TemporalUUIDGenerator
-from flask_talisman import Talisman
 
 app = Flask(__name__)
 # Configuración de la aplicación
