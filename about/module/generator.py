@@ -14,13 +14,5 @@ class TemporalUUIDGenerator():
         self.redis_vault.set('uuids', new_uuid)
         return new_uuid
     
-    def cleanup_uuids(self):
-        current_time = datetime.now()
-        uuids = self.redis_vault.get('uuids')
-        print(f'uuids from redis : {uuids}')
-        expired_uuids = [uuid for uuid, expiration_time in self.uuids if expiration_time < current_time]
-        for uuid in expired_uuids:
-            del self.uuids[uuid]
-
     def get_uuids(self):
         return self.uuids
