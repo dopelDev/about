@@ -7,6 +7,7 @@ sys.path.append(module_path)
 
 from flask import Flask, render_template, send_from_directory, jsonify, request
 from flask_mail import Mail, Message
+from flask_wtf.csrf import CSRFProtect
 from forms import ContactForm
 from config import ProductionConfig 
 from generator import TemporalUUIDGenerator
@@ -37,21 +38,25 @@ def about():
     except:
         print("Error al limpiar uuids")
     finally:
-        uuid = uuid_generator.generate_uuid(lifespan_minutes=5)
+        uuid = uuid_generator.generate_uuid(lifespan_minutes=25)
         uuid = uuid_generator.get_uuids()
     print(uuid.keys())
     costumer_uuids = list(uuid.keys())
     print(costumer_uuids[-1])
     form = ContactForm()
+    uuid_vault = list(uuid_generator.get_uuids().keys())
+    print(f'vault box : {uuid_vault}')
     return render_template('about.html', form=form, uuid=costumer_uuids[-1])
 
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
     form = ContactForm()
     uuid = request.headers.get('X-UUID')
-    print(uuid)
-    print(uuid_generator.get_uuids())
-    if uuid in uuid_generator.get_uuids():
+    print(f'Value from frontend : {uuid}')
+    uuid_vault = list(uuid_generator.get_uuids().keys())
+    print(f'vault box : {uuid_vault}')
+    print(f'form is valid : {form.validate_on_submit()}')
+    if uuid in uuid_vault and form.validate_on_submit() is True:
         message = form.message.data
         if form.subject.data == None:
             form.subject.data = 'Consulta'
@@ -63,4 +68,4 @@ def submit_contact_form():
         return jsonify({'success' : False})
 
 if __name__ == '__main__':
-    app.run(port=8989, host='0.0.0.0')
+    app.run()
