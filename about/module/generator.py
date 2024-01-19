@@ -5,7 +5,7 @@ import redis
 class TemporalUUIDGenerator():
     def __init__(self):
         self.uuids = {}
-        self.redis_vault = redis.Redis(host='localhost', port=6379, db=0)
+        self.redis_vault = redis.Redis(host='redis', port=6379, db=0)
 
     def generate_uuid(self, lifespan_minutes):
         new_uuid = str(uuid.uuid4())
