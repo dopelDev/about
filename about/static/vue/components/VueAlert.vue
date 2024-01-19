@@ -55,7 +55,7 @@
 				this.showAlert = true;
 				this.isSuccess = success;
 				this.message = message;
-				setTimeout(() => this.showAlert = false, 300);
+				setTimeout(() => this.showAlert = false, 3000);
 			},
 					},
 		beforeUnmount() {
