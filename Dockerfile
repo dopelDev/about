@@ -8,4 +8,4 @@ WORKDIR /app
 COPY about/ .
 RUN pip install -r requirements.txt
 EXPOSE 8181
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8181", "--workers", "3"]
+CMD ["gunicorn", "app:app", "--bind", "127.0.0.1:8181", "--workers", "8"]
