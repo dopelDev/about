@@ -57,15 +57,10 @@ def submit_contact_form():
     print(f'form is valid : {form.validate_on_submit()}')
     print(f'Value from frontend : {uuid}')
     if uuid == str(uuid_vault) and form.validate_on_submit() is True:
-        print("checkpoint 1")
         message = form.message.data
-        print("checkpoint 2")
         msg = Message(form.subject.data, sender='322kuroneko2@gmail.com', recipients=['322kuroneko@gmail.com'])
-        print("checkpoint 3")
         msg.body = message + '\n' + "from: " + form.email.data + '\n' + "First Name: " + form.first_name.data + '\n' + "Last Name: " + form.last_name.data + '\n' + "Country: " + form.country.data
-        print("checkpoint 4")
         mail.send(msg)
-        print("checkpoint 5")
         print(f'mail has been sent : {mail}')
         return jsonify({'success' : True})
     else:
