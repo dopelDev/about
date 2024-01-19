@@ -1,43 +1,29 @@
-from flask import Flask, render_template, send_from_directory, jsonify
+import os
+import sys
+
+currentdir = os.path.dirname(os.path.realpath(__file__))
+module_path = os.path.join(currentdir, 'module')
+sys.path.append(module_path)
+
+from flask import Flask, render_template, send_from_directory, jsonify, request
 from flask_mail import Mail, Message
-from flask_wtf import CSRFProtect
-from module.forms import ContactForm
-from module.config import DevelopmentConfig
-from flask_talisman import Talisman
 
 app = Flask(__name__)
 # Configuración de la aplicación
-CSRFProtect(app)
-app.config.from_object(DevelopmentConfig)
+from forms import ContactForm
+from config import ProductionConfig 
+from generator import TemporalUUIDGenerator
+import redis
+
+redis_vault = redis.Redis(host='localhost', port=6379, db=0)
+
+app = Flask(__name__)
+# Configuración de la aplicación
+app.config.from_object(ProductionConfig)
 # Configuración de la extensión Mail
 mail = Mail(app)
-
-# Configuración de la extensión Talisman
-csp = {
-        'default-src': [
-            '\'self\'',
-            'https://www.google-analytics.com',
-            'https://about.dopeldev.com',
-        ],
-        'img-src': [
-            '\'self\'',
-            'https://about.dopeldev.com',
-        ],
-        'style-src': [
-            '\'self\'',
-            'https://about.dopeldev.com',
-            '\'unsafe-inline\'',
-            'https://about.dopeldev.com',
-        ],
-        'font-src': [
-            '\'self\'',
-            'https://about.dopeldev.com',
-        ],
-        'script-src': [
-            'https://about.dopeldev.com',
-        ]
-    }
-#Talisman(app, content_security_policy=csp)
+# uuid generator
+uuid_generator = TemporalUUIDGenerator()
 
 @app.route('/favicon.ico')
 def favicon():
@@ -51,23 +37,39 @@ def custom_js():
 
 @app.route('/')
 def about():
+    uuid = uuid_generator.generate_uuid(lifespan_minutes=5)
+    uuid = uuid_generator.get_uuids()
+    print(uuid.keys())
+    uuids_from_redis = redis_vault.get('uuids')
+    print(f'from redis: {uuids_from_redis}')
     form = ContactForm()
-    return render_template('about.html', form=form)
+    print(f'vault box : {uuids_from_redis}')
+    return render_template('about.html', form=form, uuid=uuids_from_redis)
 
 @app.route('/submit_contact_form', methods=['POST'])
 def submit_contact_form():
     form = ContactForm()
-    if form.validate_on_submit():
-        print(form.first_name.data)
+    uuid = request.headers.get('X-UUID')
+    print(f'Value from frontend : {uuid}')
+    uuid_vault = redis_vault.get('uuids')
+    print(f'vault box : {uuid_vault}')
+    print(f'user uuid : {uuid}')
+    print(f'form is valid : {form.validate_on_submit()}')
+    print(f'Value from frontend : {uuid}')
+    if uuid == str(uuid_vault) and form.validate_on_submit() is True:
+        print("checkpoint 1")
         message = form.message.data
-        if form.subject.data == None:
-            form.subject.data = 'Consulta'
+        print("checkpoint 2")
         msg = Message(form.subject.data, sender='322kuroneko2@gmail.com', recipients=['322kuroneko@gmail.com'])
+        print("checkpoint 3")
         msg.body = message + '\n' + "from: " + form.email.data + '\n' + "First Name: " + form.first_name.data + '\n' + "Last Name: " + form.last_name.data + '\n' + "Country: " + form.country.data
+        print("checkpoint 4")
         mail.send(msg)
+        print("checkpoint 5")
+        print(f'mail has been sent : {mail}')
         return jsonify({'success' : True})
     else:
         return jsonify({'success' : False})
 
 if __name__ == '__main__':
-    app.run(port=8181, host='localhost')
+    app.run()
