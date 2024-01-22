@@ -1,6 +1,6 @@
 # About
 #### Monday 22 January 2024
-![img](img/DALL·E 2024-01-22 18.40.38 - Un hombre del Mediterráneo mirando hacia un espejo grande y elegante para hacer un autoretrato, en un estilo futurista steampunk. La escena se desarro.png)
+![img](https://github.com/dopelDev/about/blob/main/img/DALL%C2%B7E%202024-01-22%2018.40.38%20-%20Un%20hombre%20del%20Mediterr%C3%A1neo%20mirando%20hacia%20un%20espejo%20grande%20y%20elegante%20para%20hacer%20un%20autoretrato%2C%20en%20un%20estilo%20futurista%20steampunk.%20La%20escena%20se%20desarro.png)
 ## Front-End:
     - VueJS:
         Adopted an unconventional approach. Vue components isolate scheme.
