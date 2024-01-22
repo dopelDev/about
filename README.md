@@ -19,14 +19,3 @@
         Used Flask-WTF for the validate type value. I don't like how it implements CSRF. Therefore, I implemented a UUID generator to tag each HTTP POST call.
     - Redis:
         Adopted from Redis the use of shared cache data. In this way, I can have a vault for UUID shared on a server like Gunicorn or Asynchrony.
-
-# について
-#### 2024年1月22日月曜日
-## フロントエンド:
-    - VueJS：
-         新しいアプローチを採用しました。Vueコンポーネントはスキームを分離します。
-## バックエンド:
-    - Flask：
-        型値の検証用にFlask-WTFを使用しました。CSRFの実装方法が気に入らないので、HTTP POSTコールごとにタグを付けるためのUUIDジェネレーターを実装しました。
-    - Redis：
-        キャッシュデータの共有利用をRedisから採用しました。この方法により、GunicornやAsynchronyのようなサーバーで共有されるUUIDのためのボールトを持つことができます。
