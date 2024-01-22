@@ -1,5 +1,6 @@
 # About
 #### Monday 22 January 2024
+![img](img/DALL·E 2024-01-22 18.40.38 - Un hombre del Mediterráneo mirando hacia un espejo grande y elegante para hacer un autoretrato, en un estilo futurista steampunk. La escena se desarro.png)
 ## Front-End:
     - VueJS:
         Adopted an unconventional approach. Vue components isolate scheme.
