@@ -1,5 +1,4 @@
 import uuid
-from datetime import datetime, timedelta
 import redis
 
 class TemporalUUIDGenerator():
@@ -9,10 +8,8 @@ class TemporalUUIDGenerator():
 
     def generate_uuid(self, lifespan_minutes):
         new_uuid = str(uuid.uuid4())
-        expiration_time = datetime.now() + timedelta(minutes=lifespan_minutes)
-        self.uuids[new_uuid] = expiration_time
-        self.redis_vault.set('uuids', new_uuid)
+        self.redis_vault.setex(new_uuid, lifespan_minutes * 60, 'active')
         return new_uuid
     
-    def get_uuids(self):
-        return self.uuids
+    def is_active(self, uuid):
+        return self.redis_vault.exists(uuid)

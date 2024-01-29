@@ -49,12 +49,12 @@ def submit_contact_form():
     form = ContactForm()
     uuid = request.headers.get('X-UUID')
     print(f'Value from frontend : {uuid}')
-    uuid_vault = redis_vault.get('uuids')
-    print(f'vault box : {uuid_vault}')
+    is_active = uuid_generator.is_active(uuid) 
+    print(f'is_active : {is_active}')
     print(f'user uuid : {uuid}')
     print(f'form is valid : {form.validate_on_submit()}')
     print(f'Value from frontend : {uuid}')
-    if uuid == str(uuid_vault) and form.validate_on_submit() is True:
+    if is_active and form.validate_on_submit() is True:
         print("checkpoint 1")
         message = form.message.data
         print("checkpoint 2")
