@@ -1,4 +1,9 @@
 # About
+
+#### Tuesday 22 October 2024
+**Soon**
+
+
 #### Monday 22 January 2024
 ## Front-End:
     - VueJS:

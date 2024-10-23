@@ -1,6 +1,6 @@
-FROM python:slim-bookworm
+FROM python:3-bullseye
 
-LABEL "maintainer"="gonzales@dopeldev.com"
+LABEL "maintainer"="dopel@dopeldev.com"
 
 USER root
 RUN apt-get update && apt-get upgrade -y
