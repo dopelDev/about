@@ -3,7 +3,13 @@ FROM python:3-bullseye
 LABEL "maintainer"="dopel@dopeldev.com"
 
 USER root
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        python3-dev \
+        libffi-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 WORKDIR /app
 COPY about/ .
 RUN pip install -r requirements.txt
