@@ -15,7 +15,7 @@ from config import ProductionConfig
 from generator import TemporalUUIDGenerator
 import redis
 
-redis_vault = redis.Redis(host='redis', port=6379, db=0)
+redis_vault = redis.Redis(host='about_oldieRedis', port=6379, db=0)
 
 app = Flask(__name__)
 # Configuración de la aplicación
